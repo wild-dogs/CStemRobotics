@@ -1,31 +1,68 @@
 #include <linkbot.h>
 // Create new linkbot-I
-CLinkbotI b1;
+CLinkbotI robot;
 
 // Connect to bot
-b1.connect();
+robot.connect();
 
 // Reset to zero
-b1.resetToZero();
+robot.resetToZero();
 
-// Moving joints by # of degrees (counter-clockwise)
+// Delay
+robot.delaySeconds(1);
+
+// Getting/setting joint speeds
+double joint1Speed;
+double joint3Speed;
+robot.getJointSpeed(ROBOT_JOINT1, joint1Speed); // Get joint speed of single joint
+robot.getJointSpeeds(joint1Speed, NaN, joint3Speed); // Get all the joint speeds
+robot.setJointSpeed(ROBOT_JOINT1, joint1Speed); // Set joint speed of single joint (max of 240 degrees/second)
+robot.setJointSpeeds(joint1Speed, NaN, joint3Speed); // Set all the joint speeds
+
+
+// Getting/setting joint speed ratios (0-1, corresponds with percentage of max speed)
+double joint1Ratio;
+double joint3Ratio;
+robot.getJointSpeedRatio(ROBOT_JOINT1, joint1Ratio);// Get joint speed ratio of single joint
+robot.getJointSpeedRatios(joint1Ratio, NaN, joint3Ratio); // Get all the joint speed ratios
+robot.setJointSpeedRatio(ROBOT_JOINT1, joint1Ratio); // Set joint speed ratios of single joint (0 to 1)
+robot.setJointSpeedRatios(joint1Ratio, NaN, joint3Ratio); // Set all the joint speed ratios
+
+// Moving joints by # of degrees (counter-clockwise) (relative position)
 int a1 = 360;
 int a2 = NaN; // I-bot can't move this joint
 int a3 = -360; // Would be NaN for an L bot
-b1.move(a1, a2, a3);
-b1.moveForward(a1); // does same thing
+robot.move(a1, a2, a3);
+robot.moveForward(a1); // does same thing
+// Move one joint by # of degrees
+robot.moveJoint(ROBOT_JOINT1, a1);
 
 // To go backwards
-b1.move(-a1, a2, -a3);
-b1.moveBackward(a1);
+robot.move(-a1, a2, -a3);
+robot.moveBackward(a1);
 
 // Another way to move
 double dist = 10; // inches
 double radius = 1.75; // Wheel radius
-b1.moveDistance(dist, radius);
+robot.moveDistance(dist, radius);
 
 // Turning
 double angle = 90;
 double trackwidth = 3.5;
-b1.turnLeft(angle, radius, trackwidth);
-b1.turnRight(angle, radius, trackwidth);
+robot.turnLeft(angle, radius, trackwidth);
+robot.turnRight(angle, radius, trackwidth);
+
+// Move joints to a specific angle (absolute position)
+a1 = 123;
+a3 = 234;
+robot.moveTo(a1, a2, a3);
+// Move single joint
+robot.moveJointTo(ROBOT_JOINT1, a1);
+
+// Getting data
+double joint1Angle;
+double joint3Angle;
+// Get a single joint angle (average of 10 measurements)
+robot.getJointAngleAverage(ROBOT_JOINT1, joint1Angle);
+// Get all the angles!
+robot.getJointAnglesAverage(joint1Angle, NaN, joint3Angle);
