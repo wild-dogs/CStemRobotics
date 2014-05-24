@@ -66,3 +66,17 @@ double joint3Angle;
 robot.getJointAngleAverage(ROBOT_JOINT1, joint1Angle);
 // Get all the angles!
 robot.getJointAnglesAverage(joint1Angle, NaN, joint3Angle);
+
+// Set movement state over specified time period
+// joint state enum values {ROBOT_NEUTRAL(default), ROBOT_FORWARD, ROBOT_BACKWARD, ROBOT_HOLD}
+int state1 = ROBOT_HOLD;
+int state2 = NaN;
+int state3 = ROBOT_HOLD;
+double time = 5;
+robot.setMovementStateTime(state1, state2, state3, time);
+// To set for only 1 joint
+robot.setJointMovementStateTime(ROBOT_JOINT1, state1, time);
+
+// Set joint exit state: can be ROBOT_NEUTRAL(default) or ROBOT_HOLD
+robot.setExitState(state1);
+
