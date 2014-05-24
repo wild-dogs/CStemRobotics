@@ -2,6 +2,8 @@
 #include <chplot.h>
 
 CLinkbotI robot;
+robot.connect();
+
 double speed = 45; // joint speed
 double time_interval = 0.1; // time interval for recording
 int num_data_pts; // data points recorded
