@@ -11,6 +11,8 @@ robot.resetToZero();
 // Delay
 robot.delaySeconds(1);
 
+double radius = 1.75; // Wheel radius
+
 // Getting/setting joint speeds
 double joint1Speed;
 double joint3Speed;
@@ -28,6 +30,10 @@ robot.getJointSpeedRatios(joint1Ratio, NaN, joint3Ratio); // Get all the joint s
 robot.setJointSpeedRatio(ROBOT_JOINT1, joint1Ratio); // Set joint speed ratios of single joint (0 to 1)
 robot.setJointSpeedRatios(joint1Ratio, NaN, joint3Ratio); // Set all the joint speed ratios
 
+// 2 wheel robot - set speed (in/sec)
+double speed = 25; //inches per second
+robot.setTwoWheelRobotSpeed(speed, radius);
+
 // Moving joints by # of degrees (counter-clockwise) (relative position)
 int a1 = 360;
 int a2 = NaN; // I-bot can't move this joint
@@ -43,7 +49,6 @@ robot.moveBackward(a1);
 
 // Another way to move
 double dist = 10; // inches
-double radius = 1.75; // Wheel radius
 robot.moveDistance(dist, radius);
 
 // Turning
@@ -80,3 +85,10 @@ robot.setJointMovementStateTime(ROBOT_JOINT1, state1, time);
 // Set joint exit state: can be ROBOT_NEUTRAL(default) or ROBOT_HOLD
 robot.setExitState(state1);
 
+// get execution time
+double t1, t2, elapsed_time;
+robot.systemTime(t1); // Windows: time since system last started. Linux: time since Unix epoch
+/* Do some stuff */
+robot.systemTime(t2);
+elapsed_time = t2 - t1;
+printf(elapsed_time);
