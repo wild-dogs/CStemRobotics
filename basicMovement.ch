@@ -92,3 +92,8 @@ robot.systemTime(t1); // Windows: time since system last started. Linux: time si
 robot.systemTime(t2);
 elapsed_time = t2 - t1;
 printf(elapsed_time);
+
+// Get distance traveled
+double distance;
+robot.getDistance(distance, radius);
+
