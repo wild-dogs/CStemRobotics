@@ -60,14 +60,14 @@ while (usr_input != 'q') {
 
         case 'j':
             cout << "How many inches: ";
-            cin >> inches;
+            cin >> dist;
             break;
         case 'k':
             cout << "How many degrees: ";
             cin >> angle;
             break;
-        case 'l'
-            cout << "What speed: "
+        case 'l':
+            cout << "What speed: ";
             cin >> speed;
             updateSpeed();
             break;
