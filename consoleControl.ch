@@ -5,6 +5,7 @@ void moveForward();
 void moveBackward();
 void turnLeft();
 void turnRight();
+void updateSpeed();
 
 CLinkbotI robot;
 robot.connect();
@@ -23,12 +24,19 @@ double angle = 10;
 
 // Speed to move at;
 double speed = 200;
+updateSpeed();
 
 cout << "Valid inputs:" << endl;
+
 cout << "'w' to move forward " << dist << " inches" << endl;
 cout << "'s' to move backwards " << dist << " inches" << endl;
 cout << "'a' to turn left " << angle << " degrees" << endl;
 cout << "'d' to turn right " << angle << " degrees" << endl;
+
+cout << "'j' to set number of inches to move at a time" << endl;
+cout << "'k' to set number of degrees to turn at a time" << endl;
+cout << "'l' to set motor speed" << endl;
+
 cout << "'q' to quit" << endl;
 
 char usr_input;
@@ -48,6 +56,20 @@ while (usr_input != 'q') {
             break;
         case 'd':
             turnRight();
+            break;
+
+        case 'j':
+            cout << "How many inches: ";
+            cin >> inches;
+            break;
+        case 'k':
+            cout << "How many degrees: ";
+            cin >> angle;
+            break;
+        case 'l'
+            cout << "What speed: "
+            cin >> speed;
+            updateSpeed();
             break;
     }
 }
@@ -70,4 +92,9 @@ void turnLeft()
 void turnRight()
 {
     robot.turnRight(angle, radius, track_width);
+}
+
+void updateSpeed()
+{
+    robot.setJointSpeeds(speed, NaN, speed);
 }
