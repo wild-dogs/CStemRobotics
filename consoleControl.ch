@@ -25,10 +25,10 @@ double angle = 10;
 double speed = 200;
 
 cout << "Valid inputs:" << endl;
-cout << "'f' to move forward " << dist << " inches" << endl;
-cout << "'b' to move backwards " << dist << " inches" << endl;
-cout << "'l' to turn left " << angle << " degrees" << endl;
-cout << "'r' to turn right " << angle << " degrees" << endl;
+cout << "'w' to move forward " << dist << " inches" << endl;
+cout << "'s' to move backwards " << dist << " inches" << endl;
+cout << "'a' to turn left " << angle << " degrees" << endl;
+cout << "'d' to turn right " << angle << " degrees" << endl;
 cout << "'q' to quit" << endl;
 
 char usr_input;
@@ -37,16 +37,16 @@ while (usr_input != 'q') {
     cin >> usr_input;
     
     switch (usr_input) {
-        case 'f':
+        case 'w':
             moveForward();
             break;
-        case 'b':
+        case 's':
             moveBackward();
             break;
-        case 'l':
+        case 'a':
             turnLeft();
             break;
-        case 'r':
+        case 'd':
             turnRight();
             break;
     }
